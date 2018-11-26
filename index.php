@@ -1,18 +1,18 @@
 <?php 
 
 require_once("vendor/autoload.php");
+use \slim\slim;
+use \Latrus\Page;
 
 $app = new \Slim\Slim();
 
 $app->config('debug', true);
 
 $app->get('/', function() {
-    
-	$sql = new Latrus\DB\sql;
 
-	$results = $sql->select("SELECT * FROM tb_users");
+	$page = new Page();
 
-	echo json_encode($results); 
+	$page->setTpl("index");
 
 
 });
