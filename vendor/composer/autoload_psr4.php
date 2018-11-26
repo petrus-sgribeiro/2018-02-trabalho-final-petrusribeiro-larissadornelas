@@ -6,5 +6,5 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    '' => array($vendorDir . '/UFOP-CSI477/php-classes/src'),
+    'Latrus\\' => array($vendorDir . '/tpweb/php-classes/src'),
 );

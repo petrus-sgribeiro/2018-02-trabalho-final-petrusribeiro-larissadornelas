@@ -13,7 +13,7 @@
     },
     "autoload": {
         "psr-4": {
-            "": "vendor\\UFOP-CSI477\\php-classes\\src"
+            "Latrus\\":"vendor\\tpweb\\php-classes\\src"
         }
     }
 }
