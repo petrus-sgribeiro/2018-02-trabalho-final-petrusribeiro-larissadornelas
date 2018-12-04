@@ -6,6 +6,9 @@ use \Latrus\DB\Sql;
 use \Latrus\Model;
 
 class User extends Model{
+
+	const SESSION = "User";
+
 	public static function login($login, $password)
 
 	{
@@ -30,9 +33,12 @@ class User extends Model{
 
 			$user = new User();
 
-			$user->setiduser($data["iduser"]);
+			$user->setdata($data);
 
-			var_dump($user);
+			$_SESSION[User::SESSION] = $user->getValues();
+
+			return $user;
+
 			exit;
 
 		}	
@@ -41,6 +47,27 @@ class User extends Model{
 			throw new \Exception("Usuário inexistente ou senha inválida.");
 		}
 
+	}
+
+	public static function verifyLogin($inadmin = true)
+	{
+		if(
+			!isset($_SESSION[User::SESSION])
+			||
+			!$_SESSION[User::SESSION]
+			||
+			!(int)$_SESSION[User::SESSION]["iduser"] > 0
+			||
+			(bool)$_SESSION[User::SESSION]["inadmin"] !== $inadmin
+		){
+			header("Location: /admin/login");
+			exit;
+		}
+	}
+
+	public static function logout()
+	{
+		$_SESSION[User::SESSION] = NULL;
 	}
 
 }
