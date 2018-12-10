@@ -17,6 +17,19 @@ class Product extends Model{
 
 	}
 
+	public static function checklist($list)
+	{
+		foreach ($list as &$row) {
+			
+			$p = new Product();
+			$p-> setData($row);
+			$row = $p->getValues();
+		}
+
+		return $list;
+
+	}
+
 	public function save()
 	{
 
@@ -73,7 +86,7 @@ class Product extends Model{
 			$this->getidproduct() . ".jpg"
 			)) {
 
-				$url = "/res/site/img/products/" . $this->getidproduct() . "jpg";
+				$url = "/res/site/img/products/" . $this->getidproduct() . ".jpg";
 
 		} else {
 			$url = "/res/site/img/product.jpg";

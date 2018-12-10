@@ -16,9 +16,13 @@ $app->config('debug', true);
 
 $app->get('/', function() {
 
+	$products = product::listAll();
+
 	$page = new Page();
 
-	$page->setTpl("index");
+	$page->setTpl("index",[
+		"products"=>Product::checkList($products)
+	]);
 
 
 });
