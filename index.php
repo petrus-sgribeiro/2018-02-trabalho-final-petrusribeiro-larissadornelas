@@ -9,6 +9,7 @@ use \Latrus\PageAdmin;
 use \Latrus\Model\User;
 use \Latrus\Model\Category;
 use \Latrus\Model\Product;
+use \Latrus\Model\Cart;
 
 $app = new \Slim\Slim();
 
@@ -506,6 +507,16 @@ $app->get("/products/:desurl", function($desurl){
 		'product'=>$product->getValues(),
 		'categories'=>$product->getCategories()
 	]);
+
+});
+
+$app->get("/cart", function(){
+
+	$cart = Cart::getFromSession();
+
+	$page = new Page();
+
+	$page->setTpl("cart");
 
 });
 
