@@ -10,6 +10,7 @@ use \Latrus\Model\User;
 use \Latrus\Model\Category;
 use \Latrus\Model\Product;
 use \Latrus\Model\Cart;
+use \Latrus\Model\Address;
 
 $app = new \Slim\Slim();
 
@@ -516,9 +517,129 @@ $app->get("/cart", function(){
 
 	$page = new Page();
 
-	$page->setTpl("cart");
+	$page->setTpl("cart", [
+		'cart'=>$cart->getValues(),
+		'products'=>$cart->getProducts()
+	]);
 
 });
+
+$app->get("/cart/:idproduct/add", function($idproduct){
+
+	$product = new Product();
+
+	$product->get((int)$idproduct);
+
+	$cart = Cart::getFromSession();
+
+	$qtd = (isset($_GET['qtd'])) ? (int)$_GET['qtd'] : 1;
+
+	for ($i = 0; $i < qtd; $i++){
+
+		$cart->addProduct($product);
+
+	}
+
+	header("Location: /cart");
+	exit;
+
+});
+
+$app->get("/cart/:idproduct/minus", function($idproduct){
+
+	$product = new Product();
+
+	$product->get((int)$idproduct);
+
+	$cart = Cart::getFromSession();
+
+	$cart->removeProduct($product);
+
+	header("Location: /cart");
+	exit;
+	
+});
+
+$app->get("/cart/:idproduct/remove", function($idproduct){
+
+	$product = new Product();
+
+	$product->get((int)$idproduct);
+
+	$cart = Cart::getFromSession();
+
+	$cart->removeProduct($product, true);
+
+	header("Location: /cart");
+	exit;
+	
+});
+
+
+
+
+
+
+
+$app->get("/checkout", function(){
+
+	User::verifyLogin(false);
+
+	$cart = Cart::getFromSession();
+
+	$address = new Address();
+
+	$page = new Page();
+
+	$page->setTpl("checkout", [
+
+		'cart'=>$cart->getValues(),
+		'address'=>$address->getValues()
+
+	]);
+	
+});
+
+$app->get("/login", function(){
+
+	$page = new Page();
+
+	$page->setTpl("login", [
+		'error'=>User::getError()
+	]);
+	
+});
+
+$app->post("/login", function(){
+
+	try {
+		User::login($_POST['login'], $_POST['password']);
+	} catch(Exception $e) {
+
+		User::setError($e->getMessage());
+
+	}
+
+	header("Location: /checkout");
+	exit;
+	
+});
+
+$app->get("/logout", function(){
+
+	User::logout();
+
+	header("Location: /checkout");
+	exit;
+	
+});
+
+
+
+
+
+
+
 
 $app->run();
 

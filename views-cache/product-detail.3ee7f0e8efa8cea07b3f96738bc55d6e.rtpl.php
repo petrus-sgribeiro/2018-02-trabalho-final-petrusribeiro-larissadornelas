@@ -1,4 +1,4 @@
-	<!-- Product Detail -->
+<?php if(!class_exists('Rain\Tpl')){exit;}?>	<!-- Product Detail -->
 	<div class="container bgwhite p-t-35 p-b-80">
 		<div class="flex-w flex-sb">
 			<div class="w-size13 p-t-30 respon5">
@@ -6,9 +6,9 @@
 					<div class="wrap-slick3-dots"></div>
 
 					<div class="slick3">
-						<div class="item-slick3" data-thumb="{$product.desphoto}">
+						<div class="item-slick3" data-thumb="<?php echo htmlspecialchars( $product["desphoto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
 							<div class="wrap-pic-w">
-								<img src="{$product.desphoto}" alt="IMG-PRODUCT">
+								<img src="<?php echo htmlspecialchars( $product["desphoto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" alt="IMG-PRODUCT">
 							</div>
 						</div>
 					</div>
@@ -17,11 +17,11 @@
 
 			<div class="w-size14 p-t-30 respon5">
 				<h4 class="product-detail-name m-text16 p-b-13">
-					{$product.desproduct}
+					<?php echo htmlspecialchars( $product["desproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
 				</h4>
 
 				<span class="m-text17">
-					R${$product.vlprice}
+					R$<?php echo htmlspecialchars( $product["vlprice"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
 				</span>
 
 				<p class="s-text8 p-t-10">
@@ -54,9 +54,9 @@
 				</div>
 
 				<div class="p-b-45">
-                    {loop="$categories"}
-					<span class="s-text8"><a href="/categories/{$value.idcategory}"></a>Categorias: {$value.descategory}</span>
-                    {/loop}
+                    <?php $counter1=-1;  if( isset($categories) && ( is_array($categories) || $categories instanceof Traversable ) && sizeof($categories) ) foreach( $categories as $key1 => $value1 ){ $counter1++; ?>
+					<span class="s-text8"><a href="/categories/<?php echo htmlspecialchars( $value1["idcategory"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"></a>Categorias: <?php echo htmlspecialchars( $value1["descategory"], ENT_COMPAT, 'UTF-8', FALSE ); ?></span>
+                    <?php } ?>
 				</div>
 
 				<!--  -->
