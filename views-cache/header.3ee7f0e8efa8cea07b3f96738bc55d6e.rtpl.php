@@ -60,9 +60,10 @@
 					</nav>
 				</div>
 				<div class="header-icons">
-					<a href="#" class="header-wrapicon1 dis-block">
+					<a href="/profile" class="header-wrapicon1 dis-block">
 						<img src="../res/site/images/icons/icon-header-01.png" class="header-icon1" alt="ICON">
 					</a>
+
 
 					<span class="linedivide1"></span>
 
@@ -136,7 +137,7 @@
 
 								<div class="header-cart-wrapbtn">
 									<!-- Button -->
-									<a href="#" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+									<a href="/logout" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
 										Sair
 									</a>
 								</div>

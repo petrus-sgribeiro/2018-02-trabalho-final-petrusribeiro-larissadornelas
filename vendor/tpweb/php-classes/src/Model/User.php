@@ -4,6 +4,7 @@ namespace Latrus\Model;
 
 use \Latrus\DB\Sql;
 use \Latrus\Model;
+use \Latrus\Mailer;
 
 class User extends Model{
 
@@ -11,6 +12,7 @@ class User extends Model{
 	const SECRET = "LatrusPhp7Secret";
 	const ERROR = "UserError";
 	const ERROR_REGISTER = "UserErrorRegister";
+	const SUCCESS = "UserSuccess";
 
 	public static function getFromSession()
 	{
@@ -192,6 +194,7 @@ class User extends Model{
 	public static function getForgot($email, $inadmin = true)
 	{
 	    $sql = new Sql();
+
 	    $results = $sql->select("
 	        SELECT *
 	        FROM tb_persons a
@@ -200,6 +203,7 @@ class User extends Model{
 	     ", array(
 	         ":email"=>$email
 	     ));
+
 	     if (count($results) === 0)
 	     {
 	         throw new \Exception("Não foi possível recuperar a senha.");
@@ -207,6 +211,7 @@ class User extends Model{
 	     else
 	     {
 	         $data = $results[0];
+
 	         $results2 = $sql->select("CALL sp_userspasswordsrecoveries_create(:iduser, :desip)", array(
 	             ":iduser"=>$data['iduser'],
 	             ":desip"=>$_SERVER['REMOTE_ADDR']
@@ -308,6 +313,31 @@ class User extends Model{
 	 {
 
 	 	$_SESSION[User::ERROR] = NULL;
+	 	
+	 }
+
+	 public static function setSuccess($msg)
+	 {
+
+	 	$_SESSION[User::SUCCESS] = $msg;
+
+	 }
+
+	 public static function getSuccess()
+	 {
+
+	 	$msg = (isset($_SESSION[User::SUCCESS]) && $_SESSION[User::SUCCESS]) ? $_SESSION[User::SUCCESS] : '';
+
+	 	User::clearError();
+
+	 	return $msg;
+	 	
+	 }
+
+	 public static function clearSuccess()
+	 {
+
+	 	$_SESSION[User::SUCCESS] = NULL;
 	 	
 	 }
 
