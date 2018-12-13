@@ -10,7 +10,7 @@ class User extends Model{
 	const SESSION = "User";
 	const SECRET = "LatrusPhp7Secret";
 	const ERROR = "UserError";
-	const ERROR_REGISTER = "UserErrrRegister";
+	const ERROR_REGISTER = "UserErrorRegister";
 
 	public static function getFromSession()
 	{
@@ -337,7 +337,7 @@ class User extends Model{
 
 	 }
 
-	 public static function checkLoginExist($Login)
+	 public static function checkLoginExist($login)
 	 {
 
 	 	$sql = new Sql();
