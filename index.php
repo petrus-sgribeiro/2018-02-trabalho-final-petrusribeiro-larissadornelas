@@ -546,7 +546,6 @@ $app->get("/cart/:idproduct/add", function($idproduct){
 });
 
 $app->get("/cart/:idproduct/minus", function($idproduct){
-<<<<<<< HEAD
 
 	$product = new Product();
 
@@ -608,34 +607,6 @@ $app->get("/login", function(){
 	$page->setTpl("login", [
 		'error'=>User::getError()
 	]);
-=======
-
-	$product = new Product();
-
-	$product->get((int)$idproduct);
-
-	$cart = Cart::getFromSession();
-
-	$cart->removeProduct($product);
-
-	header("Location: /cart");
-	exit;
-	
-});
-
-$app->get("/cart/:idproduct/remove", function($idproduct){
-
-	$product = new Product();
-
-	$product->get((int)$idproduct);
-
-	$cart = Cart::getFromSession();
-
-	$cart->removeProduct($product, true);
-
-	header("Location: /cart");
-	exit;
->>>>>>> ad11296cd550726c19e8ffa10a3af9e57a87ccd8
 	
 });
 
