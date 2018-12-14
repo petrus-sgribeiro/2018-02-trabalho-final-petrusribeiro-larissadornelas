@@ -30,6 +30,7 @@
 
 				<ul>
 					<?php require $this->checkTemplate("categories-menu");?>
+
 					
 				</ul>
 					

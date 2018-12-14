@@ -171,6 +171,7 @@
 			<div class="wrap-slick2">
 				<div class="slick2">
 					<?php $counter1=-1;  if( isset($products) && ( is_array($products) || $products instanceof Traversable ) && sizeof($products) ) foreach( $products as $key1 => $value1 ){ $counter1++; ?>
+
 					<div class="item-slick2 p-l-15 p-r-15">
 						<!-- Block2 -->
 						<div class="block2">
@@ -195,15 +196,18 @@
 							<div class="block2-txt p-t-20">
 								<a href="/products/<?php echo htmlspecialchars( $value1["desurl"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="block2-name dis-block s-text3 p-b-5">
 									<?php echo htmlspecialchars( $value1["desproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+
 								</a>
 
 								<span class="block2-price m-text6 p-r-5">
 									R$<?php echo htmlspecialchars( $value1["vlprice"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+
 								</span>
 							</div>
 						</div>
 					</div>
 					<?php } ?>
+
 				</div>
 			</div>
 

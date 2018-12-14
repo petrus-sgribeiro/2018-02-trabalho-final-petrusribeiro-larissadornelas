@@ -35,7 +35,7 @@
 				</div>
 
 				<span class="topbar-child1">
-					Frete Grátis para compras acima de R$100
+					Frete Grátis
 				</span>
 
 				<div class="topbar-child2">
@@ -56,6 +56,7 @@
 								<a href="/">Home</a>
 							</li>
 							<?php require $this->checkTemplate("categories-menu");?>
+
 						</ul>
 					</nav>
 				</div>
@@ -63,7 +64,6 @@
 					<a href="/profile" class="header-wrapicon1 dis-block">
 						<img src="../res/site/images/icons/icon-header-01.png" class="header-icon1" alt="ICON">
 					</a>
-
 
 					<span class="linedivide1"></span>
 
@@ -80,7 +80,7 @@
 									</div>
 
 									<div class="header-cart-item-txt">
-										<a href="#" class="header-cart-item-name">
+										<a href="/cart" class="header-cart-item-name">
 											White Shirt With Pleat Detail Back
 										</a>
 

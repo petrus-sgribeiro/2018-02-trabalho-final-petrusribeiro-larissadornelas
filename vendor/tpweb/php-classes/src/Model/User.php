@@ -151,15 +151,13 @@ class User extends Model{
 		$sql = new Sql();
 
 		$results = $sql->select("SELECT * FROM tb_users a INNER JOIN tb_persons b USING(idperson) WHERE a.iduser = :iduser", array(
-
 			":iduser"=>$iduser
 		));
 
-		$data = $results[0];
+		$this->setData($results[0]);
 
 		$data['desperson'] = utf8_encode($data['desperson']);
 
-		$this->setData($data);
 	}
 
 	public function update()
@@ -170,7 +168,7 @@ class User extends Model{
 			":iduser"=>$this->getiduser(),
 			":desperson"=>utf8_decode($this->getdesperson()),
 			":deslogin"=>$this->getdeslogin(),
-			":despassword"=>User::getPasswordHash($this->getdespassword()),
+			":despassword"=>User::getPasswordHash($this->getdespassword() ),
 			":desemail"=>$this->getdesemail(),
 			":nrphone"=>$this->getnrphone(),
 			":inadmin"=>$this->getinadmin()
@@ -194,7 +192,6 @@ class User extends Model{
 	public static function getForgot($email, $inadmin = true)
 	{
 	    $sql = new Sql();
-
 	    $results = $sql->select("
 	        SELECT *
 	        FROM tb_persons a
@@ -203,7 +200,6 @@ class User extends Model{
 	     ", array(
 	         ":email"=>$email
 	     ));
-
 	     if (count($results) === 0)
 	     {
 	         throw new \Exception("Não foi possível recuperar a senha.");
@@ -211,7 +207,6 @@ class User extends Model{
 	     else
 	     {
 	         $data = $results[0];
-
 	         $results2 = $sql->select("CALL sp_userspasswordsrecoveries_create(:iduser, :desip)", array(
 	             ":iduser"=>$data['iduser'],
 	             ":desip"=>$_SERVER['REMOTE_ADDR']
