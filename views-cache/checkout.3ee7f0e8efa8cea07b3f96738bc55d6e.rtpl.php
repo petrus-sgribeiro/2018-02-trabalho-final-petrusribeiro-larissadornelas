@@ -22,9 +22,14 @@
 							<div class="row">
 								<div class="col-md-12">
 
+									<?php if( $error != '' ){ ?>
+
 									<div class="alert alert-danger">
-										Error!
+										<?php echo htmlspecialchars( $error, ENT_COMPAT, 'UTF-8', FALSE ); ?>
+
 									</div>
+									<?php } ?>
+
 
 									<div class="woocommerce-billing-fields">
 										<h3>Endereço de entrega</h3>
@@ -71,33 +76,38 @@
 													</tr>
 												</thead>
 												<tbody>
-                                                    
+
+													<?php $counter1=-1;  if( isset($products) && ( is_array($products) || $products instanceof Traversable ) && sizeof($products) ) foreach( $products as $key1 => $value1 ){ $counter1++; ?>
+
 													<tr class="cart_item">
 														<td class="product-name">
-															Ship Your Idea <strong class="product-quantity">× 1</strong> 
+															{value.desproduct} <strong class="product-quantity">{value.nrqtd}</strong> 
 														</td>
 														<td class="product-total">
-															<span class="amount">$700.00</span>
+															<span class="amount">R$<?php echo htmlspecialchars( $value1["vltotal"], ENT_COMPAT, 'UTF-8', FALSE ); ?></span>
 														</td>
                                                     </tr>
+                                                    <?php } ?>
+
+
                                                     
 												</tbody>
 												<tfoot>
 													<tr class="cart-subtotal">
 														<th>Subtotal</th>
-														<td><span class="amount">$700.00</span>
+														<td><span class="amount">R$<?php echo htmlspecialchars( $cart["vlsubtotal"], ENT_COMPAT, 'UTF-8', FALSE ); ?></span>
 														</td>
 													</tr>
 													<tr class="shipping">
 														<th>Frete</th>
 														<td>
-															$5.00
+															R$0.00
 															<input type="hidden" class="shipping_method" value="free_shipping" id="shipping_method_0" data-index="0" name="shipping_method[0]">
 														</td>
 													</tr>
 													<tr class="order-total">
 														<th>Total do Pedido</th>
-														<td><strong><span class="amount">$705.00</span></strong> </td>
+														<td><strong><span class="amount">R$<?php echo htmlspecialchars( $cart["vlsubtotal"], ENT_COMPAT, 'UTF-8', FALSE ); ?></span></strong> </td>
 													</tr>
 												</tfoot>
 											</table>

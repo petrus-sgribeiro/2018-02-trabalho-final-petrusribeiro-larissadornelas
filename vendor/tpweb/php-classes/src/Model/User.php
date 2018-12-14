@@ -93,8 +93,6 @@ class User extends Model{
 
 			return $user;
 
-			exit;
-
 		}	
 
 		else {
