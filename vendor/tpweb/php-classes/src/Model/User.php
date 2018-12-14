@@ -154,6 +154,8 @@ class User extends Model{
 
 		$this->setData($results[0]);
 
+		$data = $results[0];
+
 		$data['desperson'] = utf8_encode($data['desperson']);
 
 	}
