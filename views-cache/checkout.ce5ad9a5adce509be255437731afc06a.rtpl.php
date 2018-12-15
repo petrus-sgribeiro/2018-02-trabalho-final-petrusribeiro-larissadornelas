@@ -1,4 +1,4 @@
-  <!-- Title Page -->
+<?php if(!class_exists('Rain\Tpl')){exit;}?>  <!-- Title Page -->
     <section class="bg-title-page p-t-40 p-b-50 flex-col-c-m" style="background:#b9b9b9;margin-bottom: 40px;">
         <h2 class="l-text2 t-center" style="color:#555555;">
             Pagamento
@@ -15,11 +15,14 @@
 							<div class="row">
 								<div class="col-md-12">
 
-									{if="$error != ''"}
+									<?php if( $error != '' ){ ?>
+
 									<div class="alert alert-danger">
-										{$error}
+										<?php echo htmlspecialchars( $error, ENT_COMPAT, 'UTF-8', FALSE ); ?>
+
 									</div>
-									{/if}
+									<?php } ?>
+
 
 									<div class="woocommerce-billing-fields">
 										<h3 id="order_review_heading" style="margin-top:30px; margin-bottom: 25px;">Endereço de entrega</h3>
@@ -27,38 +30,38 @@
 											<label class="" for="billing_address_1">Cep <abbr title="required" class="required">*</abbr>
 											</label>
 											<div class="form-row"> 
-											<input type="text" value="{$cart.deszipcode}" placeholder="00000-000" id="billing_address_1" name="zipcode" class="form-control" style="border: solid 1px #9a9898 !important; width: 20%;">
+											<input type="text" value="<?php echo htmlspecialchars( $cart["deszipcode"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="00000-000" id="billing_address_1" name="zipcode" class="form-control" style="border: solid 1px #9a9898 !important; width: 20%;">
 										</div>
 										</div>
 										<div id="billing_address_1_field" class="form-group form-row-wide address-field validate-required">
 											<label class="" for="billing_address_1">Endereço <abbr title="required" class="required">*</abbr>
 											</label>
-											<input  class="form-control" style="border: solid 1px #9a9898 !important;    width: 70%;" type="text" value="{$address.desaddress}" placeholder="Logradouro, número e bairro" id="billing_address_1" name="desaddress" >
+											<input  class="form-control" style="border: solid 1px #9a9898 !important;    width: 70%;" type="text" value="<?php echo htmlspecialchars( $address["desaddress"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Logradouro, número e bairro" id="billing_address_1" name="desaddress" >
 										</div>
 										<div id="billing_address_2_field" class="form-group form-row-wide address-field">
 												<label class="" for="billing_address_1">Complemento</label>
 											</label>
-											<input  class="form-control" style="border: solid 1px #9a9898 !important;    width: 70%;" type="text" value="{$address.descomplement}" placeholder="Complemento (opcional)" id="billing_address_2" name="descomplement">
+											<input  class="form-control" style="border: solid 1px #9a9898 !important;    width: 70%;" type="text" value="<?php echo htmlspecialchars( $address["descomplement"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Complemento (opcional)" id="billing_address_2" name="descomplement">
                                         </div>
                                         <div id="billing_district_field" class="form-group form-row-wide address-field validate-required" data-o_class="form-row form-row-wide address-field validate-required">
 											<label class="" for="billing_district">Bairro <abbr title="required" class="required">*</abbr>
 											</label>
-											<input  style="border: solid 1px #9a9898 !important; width: 70%;" type="text" value="{$address.desdistrict}" placeholder="Bairro" id="billing_district" name="desdistrict" class="form-control">
+											<input  style="border: solid 1px #9a9898 !important; width: 70%;" type="text" value="<?php echo htmlspecialchars( $address["desdistrict"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Bairro" id="billing_district" name="desdistrict" class="form-control">
 										</div>
                                         <div id="billing_district_field" class="form-group form-row-wide address-field validate-required" data-o_class="form-row form-row-wide address-field validate-required">
 											<label class="" for="billing_city">Cidade <abbr title="required" class="required">*</abbr>
 											</label>
-											<input  style="border: solid 1px #9a9898 !important; width: 70%;" type="text" value="{$address.descity}" placeholder="Cidade" id="billing_district" name="descity" class="form-control">
+											<input  style="border: solid 1px #9a9898 !important; width: 70%;" type="text" value="<?php echo htmlspecialchars( $address["descity"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Cidade" id="billing_district" name="descity" class="form-control">
 										</div>										
                                         <div id="billing_district_field" class="form-group form-row-wide address-field validate-required" data-o_class="form-row form-row-wide address-field validate-required">
 											<label class="" for="billing_state">Estado <abbr title="required" class="required">*</abbr>
 											</label>
-											<input  style="border: solid 1px #9a9898 !important; width: 70%;" type="text" value="{$address.desstate}" placeholder="Estado" id="billing_district" name="desstate" class="form-control">
+											<input  style="border: solid 1px #9a9898 !important; width: 70%;" type="text" value="<?php echo htmlspecialchars( $address["desstate"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Estado" id="billing_district" name="desstate" class="form-control">
 										</div>
                                         <div id="billing_district_field" class="form-group form-row-wide address-field validate-required" data-o_class="form-row form-row-wide address-field validate-required">
 											<label class="" for="billing_country">País <abbr title="required" class="required">*</abbr>
 											</label>
-											<input  style="border: solid 1px #9a9898 !important; width: 70%;" type="text" value="{$address.descountry}" placeholder="País" id="billing_district" name="descountry" class="form-control">
+											<input  style="border: solid 1px #9a9898 !important; width: 70%;" type="text" value="<?php echo htmlspecialchars( $address["descountry"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="País" id="billing_district" name="descountry" class="form-control">
 										</div>																				
 										<div class="clear"></div>
 										<h3 id="order_review_heading" style="margin-top:60px; margin-bottom: 25px;">Detalhes do Pedido</h3>
@@ -72,23 +75,25 @@
 												</thead>
 												<tbody>
 
-													{loop="$products"}
+													<?php $counter1=-1;  if( isset($products) && ( is_array($products) || $products instanceof Traversable ) && sizeof($products) ) foreach( $products as $key1 => $value1 ){ $counter1++; ?>
+
 													<tr class="cart_item">
 														<td class="product-name">
-															{$value.desproduct} x<strong class="product-quantity">{$value.nrqtd}</strong> 
+															<?php echo htmlspecialchars( $value1["desproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?> x<strong class="product-quantity"><?php echo htmlspecialchars( $value1["nrqtd"], ENT_COMPAT, 'UTF-8', FALSE ); ?></strong> 
 														</td>
 														<td class="product-total">
-															<span class="amount">R${$value.vltotal}</span>
+															<span class="amount">R$<?php echo htmlspecialchars( $value1["vltotal"], ENT_COMPAT, 'UTF-8', FALSE ); ?></span>
 														</td>
                                                     </tr>
-                                                    {/loop}
+                                                    <?php } ?>
+
 
                                                     
 												</tbody>
 												<tfoot>
 													<tr class="cart-subtotal">
 														<th>Subtotal</th>
-														<td><span class="amount">R${$cart.vlsubtotal}</span>
+														<td><span class="amount">R$<?php echo htmlspecialchars( $cart["vlsubtotal"], ENT_COMPAT, 'UTF-8', FALSE ); ?></span>
 														</td>
 													</tr>
 													<tr class="shipping">
@@ -100,7 +105,7 @@
 													</tr>
 													<tr class="order-total">
 														<th>Total do Pedido</th>
-														<td><strong><span class="amount">R${$cart.vlsubtotal}</span></strong> </td>
+														<td><strong><span class="amount">R$<?php echo htmlspecialchars( $cart["vlsubtotal"], ENT_COMPAT, 'UTF-8', FALSE ); ?></span></strong> </td>
 													</tr>
 												</tfoot>
 											</table>

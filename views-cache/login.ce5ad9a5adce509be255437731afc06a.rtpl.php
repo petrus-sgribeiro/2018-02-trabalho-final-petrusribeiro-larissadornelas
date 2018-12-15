@@ -1,3 +1,4 @@
+<?php if(!class_exists('Rain\Tpl')){exit;}?>
 
     <!-- Title Page -->
     <section class="bg-title-page p-t-40 p-b-50 flex-col-c-m" style="background:#b9b9b9;margin-bottom: 40px;">
@@ -36,19 +37,24 @@
 
                     <div class="clear"></div>
                 </form>   
-                 {if="$error != ''"}
+                 <?php if( $error != '' ){ ?>
+
                 <div class="alert alert-danger">
-                    {$error}
+                    <?php echo htmlspecialchars( $error, ENT_COMPAT, 'UTF-8', FALSE ); ?>
+
                 </div>
-                {/if}                 
+                <?php } ?>                 
             </div>
             <div class="col-md-6">
                 
-                {if="$errorRegister != ''"}
+                <?php if( $errorRegister != '' ){ ?>
+
                 <div class="alert alert-danger">
-                    {$errorRegister}
+                    <?php echo htmlspecialchars( $errorRegister, ENT_COMPAT, 'UTF-8', FALSE ); ?>
+
                 </div>
-                {/if}
+                <?php } ?>
+
 
                 <form  action="/register" method="post">
                     <h2 class="text-center" style="margin-bottom: 50px;">Criar conta</h2>
@@ -56,17 +62,17 @@
                         <div class="form-row">
                         <label for="nome">Nome Completo <span class="required">*</span>
                         </label>
-                        <input style="border: 1px solid #9a9898 !important;"class="form-control type="text" id="nome" name="name" class="input-text" value="{$registerValues.name}">
+                        <input style="border: 1px solid #9a9898 !important;"class="form-control type="text" id="nome" name="name" class="input-text" value="<?php echo htmlspecialchars( $registerValues["name"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                     </div>
                     <div>
                         <label for="email">E-mail <span class="required">*</span>
                         </label>
-                        <input style="border: 1px solid #9a9898 !important;" class="form-control" type="email" id="email" name="email" class="input-text" value="{$registerValues.email}">
+                        <input style="border: 1px solid #9a9898 !important;" class="form-control" type="email" id="email" name="email" class="input-text" value="<?php echo htmlspecialchars( $registerValues["email"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                     </p>
                     <div class="form-group">
                         <label for="phone">Telefone
                         </label>
-                        <input style="border: 1px solid #9a9898 !important;" class="form-control" type="text" id="phone" name="phone" class="input-text" value="{$registerValues.phone}">
+                        <input style="border: 1px solid #9a9898 !important;" class="form-control" type="text" id="phone" name="phone" class="input-text" value="<?php echo htmlspecialchars( $registerValues["phone"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                     </div>
                     <div class="form-group">
                         <label for="senha">Senha <span class="required">*</span>

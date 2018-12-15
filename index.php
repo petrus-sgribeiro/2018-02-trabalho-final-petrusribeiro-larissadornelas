@@ -639,9 +639,8 @@ $app->get("/checkout", function(){
 
 $app->post("/checkout", function(){
 
-	User::verifyLogin(false);
-
-	if(!isset($_POST['zipcode']) || $_POST['zipcode'] === ''){
+	
+	/*if(!isset($_POST['zipcode']) || $_POST['zipcode'] === ''){
 		Address::setMsgError("Informe o CEP.");
 		header('Location: /checkout');
 		exit;
@@ -704,8 +703,8 @@ $app->post("/checkout", function(){
 	]);
 
 	$order->save();
-
-	header("Location: /order/". $order->getidorder());
+*/
+	header("Location: /");
 	exit;
 
 });

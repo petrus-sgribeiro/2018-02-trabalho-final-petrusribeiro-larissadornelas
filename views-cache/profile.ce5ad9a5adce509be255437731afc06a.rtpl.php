@@ -1,4 +1,4 @@
-  <!-- Title Page -->
+<?php if(!class_exists('Rain\Tpl')){exit;}?>  <!-- Title Page -->
     <section class="bg-title-page p-t-40 p-b-50 flex-col-c-m" style="background:#b9b9b9;margin-bottom: 40px;">
         <h2 class="l-text2 t-center" style="color:#555555;">
             Minha Conta
@@ -12,18 +12,18 @@
 				<div class="col-md-6 p-b-30" style="background: #5f6465;">
 					<div class="p-r-20 p-r-0-lg">
 						<h4 class="m-text26 p-b-36 p-t-15">
-							{include="profile-menu"}
+							<?php require $this->checkTemplate("profile-menu");?>
 						</h4>
-						{if="$profileMsg != ''"}
+						<?php if( $profileMsg != '' ){ ?>
                			 <div class="alert alert-success">
-                 	   {$profileMsg}
+                 	   <?php echo htmlspecialchars( $profileMsg, ENT_COMPAT, 'UTF-8', FALSE ); ?>
               			  </div>
-              			  {/if}
-               			 {if="$profileError != ''"}
+              			  <?php } ?>
+               			 <?php if( $profileError != '' ){ ?>
                			 <div class="alert alert-danger">
-                   			 {$profileError}
+                   			 <?php echo htmlspecialchars( $profileError, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                			 </div>
-               			 {/if}
+               			 <?php } ?>
 					</div>
 				</div>
 
